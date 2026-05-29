@@ -9,6 +9,10 @@ import os
 from dotenv import load_dotenv
 from sqlalchemy.orm import Session
 
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+from pathlib import Path
+
 # Database Imports
 import database, models
 
@@ -498,12 +502,18 @@ def dashboard(
     }
 
 # ---------------------------
-# ROOT
+# FRONTEND HOSTING
 # ---------------------------
 
-@app.get("/")
-def root():
+BASE_DIR = Path(__file__).resolve().parent.parent
 
-    return {
-        "status": "DTMS Integrated Backend Running"
-    }
+# Serve entire Frontend folder
+
+app.mount(
+    "/",
+    StaticFiles(
+        directory=str(BASE_DIR / "Frontend"),
+        html=True
+    ),
+    name="frontend"
+)
