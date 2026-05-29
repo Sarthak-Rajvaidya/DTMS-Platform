@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DMTS | Survival Challenge</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    
+    <link rel="stylesheet" href="css/quiz.css">
+</head>
+
+<body>
+
+<!-- Platform Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-black bg-opacity-50 px-4 py-3 sticky-top" style="backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1);">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html">
+            <i class="bi bi-shield-check text-primary me-2 fs-3"></i>
+            <span>DMTS Platform</span>
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto gap-lg-3">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html"><i class="bi bi-speedometer2 me-1"></i> Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="modules.html"><i class="bi bi-book me-1"></i> Modules</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="simulation.html"><i class="bi bi-controller me-1"></i> Simulations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active fw-bold text-primary" href="quiz.html"><i class="bi bi-pencil-square me-1"></i> Quiz</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#" data-bs-toggle="modal" data-bs-target="#predictorModal"><i class="bi bi-graph-up-arrow me-1"></i> Predictor</a>
+                </li>
+            </ul>
+            
+            <div class="d-flex align-items-center gap-3">
+                <div class="text-end d-none d-lg-block">
+                    <div class="fw-bold small" id="navUserName">Loading...</div>
+                    <div class="text-white-50" style="font-size: 0.7rem;">Student</div>
+                </div>
+                <button onclick="logout()" class="btn btn-outline-danger btn-sm rounded-circle p-2" style="width: 35px; height: 35px; display: flex; align-items: center; justify-content: center;">
+                    <i class="bi bi-box-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="quiz-container">
+
+    <!-- HUD -->
+    <div class="quiz-hud">
+        <div class="hud-item">
+            <i class="bi bi-stopwatch text-warning"></i>
+            <span id="time">10</span>s
+        </div>
+        <div class="hud-item">
+            <i class="bi bi-star-fill text-primary"></i>
+            Score: <strong id="score">0</strong>
+        </div>
+        <div class="hud-item">
+            <i class="bi bi-fire text-danger"></i>
+            Streak: <strong id="streak">0</strong>
+        </div>
+    </div>
+
+    <!-- QUIZ CARD -->
+    <div class="quiz-card shadow-lg" id="quizCard">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <span class="badge bg-danger rounded-pill px-3 py-2">
+                <i class="bi bi-exclamation-triangle-fill me-1"></i> EMERGENCY SCENARIO
+            </span>
+            <span class="text-muted small" id="qCount">Q 1/6</span>
+        </div>
+
+        <h4 id="questionText">Loading challenge...</h4>
+
+        <div id="options" class="options-container">
+            <!-- Buttons injected dynamically -->
+        </div>
+
+        <div class="mt-5">
+            <div class="progress">
+                <div id="quizProgress" class="progress-bar" style="width: 0%"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RESULT CARD -->
+    <div class="result-card d-none" id="resultCard">
+        <div class="text-center">
+            <div class="mb-4">
+                <i class="bi bi-trophy text-warning" style="font-size: 4rem;"></i>
+            </div>
+            <h3>Challenge Completed!</h3>
+            
+            <div class="row g-3 mb-4">
+                <div class="col-6">
+                    <div class="p-3 bg-white rounded-4 shadow-lg">
+                        <small class="text-dark opacity-75 d-block fw-bold">FINAL SCORE</small>
+                        <strong class="fs-1 text-black" id="finalScore">0</strong>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="p-3 bg-white bg-opacity-5 rounded-4">
+                        <small class="text-muted d-block">Rank</small>
+                        <strong class="rank-text" id="rank">Beginner</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <h6 class="text-uppercase small fw-bold text-muted mb-3">Badges Earned</h6>
+                <div id="badges">
+                    <!-- Badges injected here -->
+                </div>
+            </div>
+
+            <div class="d-grid gap-2">
+                <a href="index.html" class="btn btn-primary btn-lg rounded-pill py-3 fw-bold">
+                    <i class="bi bi-speedometer2 me-2"></i> Return to Dashboard
+                </a>
+                <button type="button" onclick="location.reload()" class="btn btn-outline-light rounded-pill py-2">
+                    <i class="bi bi-arrow-clockwise me-2"></i> Try Again
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Predictor Modal -->
+<div class="modal fade" id="predictorModal" tabindex="-1" aria-labelledby="predictorModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content border-0 shadow-lg text-dark predictor-modal-content" style="border-radius: 20px; overflow: hidden;">
+            <div class="modal-header bg-dark text-white border-0 py-4">
+                <h5 class="modal-title fw-bold" id="predictorModalLabel">🌍 AI Disaster Predictor</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-5">
+                <h2 class="fw-bold mb-3 text-center">🌍 AI Disaster Predictor</h2>
+
+                <div class="row justify-content-center">
+                    <div class="col-md-3">
+                        <input type="number" id="rainfall" class="form-control mb-3" placeholder="Rainfall (mm)">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="number" id="temperature" class="form-control mb-3" placeholder="Temperature (°C)">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="number" id="humidity" class="form-control mb-3" placeholder="Humidity (%)">
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center gap-3 mt-4">
+                    <button class="btn btn-primary px-4 py-2" onclick="predictDisaster()">🔍 Predict Disaster</button>
+                    <button class="btn btn-success" onclick="getWeather()">🌍 Auto Detect Weather</button>
+                </div>
+
+                <!-- RESULT -->
+                <div class="mt-4 text-center">
+                    <h4 id="result"></h4>
+                    <p id="probability" class="fw-bold"></p>
+                </div>
+
+                <!-- 🔥 Risk Meter -->
+                <div class="progress mt-3" style="height: 25px;">
+                    <div id="riskBar" class="progress-bar" style="width:0%">0%</div>
+                </div>
+
+                <!-- 📊 Graph -->
+                <canvas id="predictionChart" height="100" class="mt-4"></canvas>
+
+                <!-- 🌍 Map Indicator -->
+                <div class="mt-3 text-center">
+                    <h5>🌍 Risk Zone</h5>
+                    <p id="mapStatus"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/quiz.js?v=2.1"></script>
+<script src="js/predictor.js"></script>
+</body>
+</html>

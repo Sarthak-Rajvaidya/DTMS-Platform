@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Learning Modules | DMTS Platform</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/modules.css">
+    <script src="js/auth.js?v=2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark px-4 py-3 sticky-top custom-nav-bg">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="index.html">
+            <i class="bi bi-shield-check me-2"></i>DMTS Platform
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto me-4">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">
+                        <i class="bi bi-speedometer2 me-1"></i>Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="modules.html">
+                        <i class="bi bi-journal-bookmark me-1"></i>Modules
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="simulation.html">
+                        <i class="bi bi-controller me-1"></i>Simulations
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="quiz.html">
+                        <i class="bi bi-pencil-square me-1"></i>Quiz
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#predictorModal">
+                        <i class="bi bi-graph-up-arrow me-1"></i>Predictor
+                    </a>
+                </li>
+            </ul>
+            <div class="ms-lg-3 d-flex align-items-center border-start ps-lg-3">
+                <div class="text-end me-2 d-none d-md-block">
+                    <div class="text-white small fw-bold" id="nav-username">Loading...</div>
+                    <div class="text-white-50 small" style="font-size: 0.7rem;" id="nav-role">Student</div>
+                </div>
+                <div class="bg-indigo-soft rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background: #4f46e5;">
+                    <i class="bi bi-person text-white"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<section class="module-hero">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h1 class="fw-bold1 mb-2">📘 Learning Modules</h1>
+                <p class="lead mb-0 text-light">
+                    Structured disaster preparedness courses designed for students and educational institutions.
+                </p>
+            </div>
+            <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+                <div class="d-flex align-items-center justify-content-lg-end">
+                    <span class="text-light me-3 small">Your Progress:</span>
+                    <div class="progress progress-container">
+                        <div class="progress-bar bg-success" id="overall-progress-bar" style="width: 0%"></div>
+                    </div>
+                    <span class="text-light ms-2 small fw-bold" id="overall-progress-text">0%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container my-4">
+    <ul class="nav nav-tabs" id="moduleTabs">
+        <li class="nav-item">
+            <button class="nav-link active" data-filter="all">All Modules</button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" data-filter="earthquake">Earthquake</button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" data-filter="flood">Flood</button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" data-filter="tornado">Tornado</button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" data-filter="wildfire">Wildfire</button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" data-filter="other">Other</button>
+        </li>
+    </ul>
+</section>
+
+<!-- ==================== EARTHQUAKE MODULES ==================== -->
+<section class="container my-5 module-category" id="earthquakeModules" data-category="earthquake">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold mb-0">🫨 Earthquake Safety Course</h2>
+        <span class="badge bg-danger px-3 py-2">Most Popular</span>
+    </div>
+    
+    <div class="row g-4">
+        <!-- Earthquake Module 1 -->
+        <div class="col-md-4">
+            <div class="card p-4 module-card earthquake h-100">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <div class="module-icon bg-danger-soft text-danger">
+                        <i class="bi bi-globe-americas"></i>
+                    </div>
+                    <span class="badge bg-warning module-badge">Beginner</span>
+                </div>
+                <h5 class="fw-bold">Module 1: Introduction to Earthquakes</h5>
+                <p class="small text-muted mb-3">Understand what earthquakes are, their causes, and why preparedness is important.</p>
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between small text-muted mb-1">
+                        <span>Progress</span>
+                        <span id="eq1Progress">20%</span>
+                    </div>
+                    <div class="progress progress-sm">
+                        <div class="progress-bar bg-danger" id="eq1ProgressBar" style="width: 20%"></div>
+                    </div>
+                </div>
+                <ul class="module-list">
+                    <li class="mb-1"><i class="bi bi-check-circle text-success me-2"></i>What is an earthquake?</li>
+                    <li class="mb-1"><i class="bi bi-check-circle text-success me-2"></i>Causes and effects</li>
+                    <li><i class="bi bi-circle text-muted me-2"></i>Common myths</li>
+                </ul>
+                <a href="earthquake/course-earthquake.html?module=1" class="btn btn-danger w-100 btn-module">
+                    <i class="bi bi-play-circle me-2"></i>Start Module
+                </a>
+            </div>
+        </div>
+
+        <!-- Earthquake Module 2 -->
+        <div class="col-md-4">
+            <div class="card p-4 module-card earthquake h-100">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <div class="module-icon bg-warning-soft text-warning">
+                        <i class="bi bi-shield-check"></i>
+                    </div>
+                    <span class="badge bg-info module-badge">Intermediate</span>
+                </div>
+                <h5 class="fw-bold">Module 2: Safety Guidelines</h5>
+                <p class="small text-muted mb-3">Learn safety measures to follow before, during, and after an earthquake.</p>
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between small text-muted mb-1">
+                        <span>Progress</span>
+                        <span id="eq2Progress">0%</span>
+                    </div>
+                    <div class="progress progress-sm">
+                        <div class="progress-bar" id="eq2ProgressBar" style="width: 0%"></div>
+                    </div>
+                </div>
+                <ul class="module-list">
+                    <li class="mb-1"><i class="bi bi-circle text-muted me-2"></i>Before an earthquake</li>
+                    <li class="mb-1"><i class="bi bi-circle text-muted me-2"></i>During an earthquake</li>
+                    <li><i class="bi bi-circle text-muted me-2"></i>After an earthquake</li>
+                </ul>
+                <a href="earthquake/course-earthquake-2.html" class="btn btn-outline-danger w-100 btn-module">
+                    <i class="bi bi-book me-2"></i>View Guidelines
+                </a>
+            </div>
+        </div>
+
+        <!-- Earthquake Module 3 -->
+        <div class="col-md-4">
+            <div class="card p-4 module-card earthquake h-100">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <div class="module-icon bg-success-soft text-success">
+                        <i class="bi bi-controller"></i>
+                    </div>
+                    <span class="badge bg-success module-badge">Practical</span>
+                </div>
+                <h5 class="fw-bold">Module 3: Practical Drill</h5>
+                <p class="small text-muted mb-3">Practice correct actions through a guided virtual earthquake drill.</p>
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between small text-muted mb-1">
+                        <span>Progress</span>
+                        <span id="eq3Progress">40%</span>
+                    </div>
+                    <div class="progress progress-sm">
+                        <div class="progress-bar bg-success" id="eq3ProgressBar" style="width: 40%"></div>
+                    </div>
+                </div>
+                <ul class="module-list">
+                    <li class="mb-1"><i class="bi bi-check-circle text-success me-2"></i>Drop – Cover – Hold</li>
+                    <li class="mb-1"><i class="bi bi-circle text-muted me-2"></i>Safe shelter identification</li>
+                    <li><i class="bi bi-circle text-muted me-2"></i>Evacuation awareness</li>
+                </ul>
+                <a href="earthquake/simulation-earthquake.html" class="btn btn-success w-100 btn-module">
+                    <i class="bi bi-play-btn me-2"></i>Start Drill
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== FLOOD MODULES ==================== -->
+<section class="container my-5 module-category" id="floodModules" data-category="flood" style="display: none;">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold mb-0">🌊 Flood Safety Course</h2>
+        <span class="badge bg-primary px-3 py-2">Essential</span>
+    </div>
+    
+    <div class="row g-4">
+        <!-- Flood Module -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card p-4 module-card flood h-100">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <div class="module-icon bg-primary-soft text-primary">
+                        <i class="bi bi-water"></i>
+                    </div>
+                    <span class="badge bg-primary module-badge">Complete Course</span>
+                </div>
+                <h5 class="fw-bold">Flood Safety & Survival</h5>
+                <p class="small text-muted mb-3">Complete guide to flood preparation, evacuation, and post-flood safety.</p>
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between small text-muted mb-1">
+                        <span>Progress</span>
+                        <span id="floodProgress">0%</span>
+                    </div>
+                    <div class="progress progress-sm">
+                        <div class="progress-bar bg-primary" id="floodProgressBar" style="width: 0%"></div>
+                    </div>
+                </div>
+                <ul class="module-list">
+                    <li class="mb-1"><i class="bi bi-check-circle text-success me-2"></i>Understanding floods</li>
+                    <li class="mb-1"><i class="bi bi-circle text-muted me-2"></i>Before & during flood</li>
+                    <li><i class="bi bi-circle text-muted me-2"></i>After flood safety</li>
+                </ul>
+                <a href="flood/course-flood.html" class="btn btn-primary w-100 btn-module">
+                    <i class="bi bi-play-circle me-2"></i>Start Course
+                </a>
+            </div>
+        </div>
+
+        <!-- Flood Advanced Module -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card p-4 module-card flood h-100">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <div class="module-icon bg-info-soft text-info">
+                        <i class="bi bi-tsunami"></i>
+                    </div>
+                    <span class="badge bg-info module-badge">Advanced</span>
+                </div>
+                <h5 class="fw-bold">Flash Flood Emergency</h5>
+                <p class="small text-muted mb-3">Specialized training for rapid-onset flooding scenarios.</p>
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between small text-muted mb-1">
+                        <span>Progress</span>
+                        <span id="flood2Progress">0%</span>
+                    </div>
+                    <div class="progress progress-sm">
+                        <div class="progress-bar bg-info" id="flood2ProgressBar" style="width: 0%"></div>
+                    </div>
+                </div>
+                <ul class="module-list">
+                    <li class="mb-1"><i class="bi bi-circle text-muted me-2"></i>Flash flood warning signs</li>
+                    <li class="mb-1"><i class="bi bi-circle text-muted me-2"></i>Vehicle safety in floods</li>
+                    <li><i class="bi bi-circle text-muted me-2"></i>Rapid evacuation</li>
+                </ul>
+                <a href="flood/course-flood.html#section3" class="btn btn-outline-primary w-100 btn-module">
+                    <i class="bi bi-star me-2"></i>Advanced Course
+                </a>
+            </div>
+        </div>
+
+        <!-- Flood Preparedness Module -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card p-4 module-card flood h-100">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <div class="module-icon bg-success-soft text-success">
+                        <i class="bi bi-house-check"></i>
+                    </div>
+                    <span class="badge bg-success module-badge">Preparedness</span>
+                </div>
+                <h5 class="fw-bold">Flood Preparation Kit</h5>
+                <p class="small text-muted mb-3">Build your emergency flood kit and home protection plan.</p>
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between small text-muted mb-1">
+                        <span>Progress</span>
+                        <span>0%</span>
+                    </div>
+                    <div class="progress progress-sm">
+                        <div class="progress-bar bg-success" style="width: 0%"></div>
+                    </div>
+                </div>
+                <ul class="module-list">
+                    <li class="mb-1"><i class="bi bi-circle text-muted me-2"></i>Emergency kit essentials</li>
+                    <li class="mb-1"><i class="bi bi-circle text-muted me-2"></i>Home flood proofing</li>
+                    <li><i class="bi bi-circle text-muted me-2"></i>Family evacuation plan</li>
+                </ul>
+                <a href="flood/course-flood.html#section5" class="btn btn-outline-success w-100 btn-module">
+                    <i class="bi bi-backpack me-2"></i>Build Kit
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== TORNADO MODULES ==================== -->
+<section class="container my-5 module-category" id="tornadoModules" data-category="tornado" style="display: none;">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold mb-0">🌪️ Tornado Safety Course</h2>
+        <span class="badge bg-warning px-3 py-2">High Priority</span>
+    </div>
+    
+    <div class="row g-4">
+        <!-- Tornado Module -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card p-4 module-card tornado h-100">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <div class="module-icon bg-info-soft text-info">
+                        <i class="bi bi-tornado"></i>
+                    </div>
+                    <span class="badge bg-info module-badge">Complete Course</span>
+                </div>
+                <h5 class="fw-bold">Tornado Safety & Survival</h5>
+                <p class="small text-muted mb-3">Master tornado warning signs, shelter locations, and survival techniques.</p>
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between small text-muted mb-1">
+                        <span>Progress</span>
+                        <span id="tornadoProgress">0%</span>
+                    </div>
+                    <div class="progress progress-sm">
+                        <div class="progress-bar bg-info" id="tornadoProgressBar" style="width: 0%"></div>
+                    </div>
+                </div>
+                <ul class="module-list">
+                    <li class="mb-1"><i class="bi bi-check-circle text-success me-2"></i>Fujita Scale</li>
+                    <li class="mb-1"><i class="bi bi-circle text-muted me-2"></i>Warning signs</li>
+                    <li><i class="bi bi-circle text-muted me-2"></i>Safe shelters</li>
+                </ul>
+                <a href="tornado/course-tornado.html" class="btn btn-warning w-100 btn-module">
+                    <i class="bi bi-play-circle me-2"></i>Start Course
+                </a>
+            </div>
+        </div>
+
+        <!-- Tornado Advanced Module -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card p-4 module-card tornado h-100">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <div class="module-icon bg-warning-soft text-warning">
+                        <i class="bi bi-cloud-lightning-rain"></i>
+                    </div>
+                    <span class="badge bg-warning module-badge">Advanced</span>
+                </div>
+                <h5 class="fw-bold">Storm Spotter Training</h5>
+                <p class="small text-muted mb-3">Learn to identify tornado-producing storms and report safely.</p>
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between small text-muted mb-1">
+                        <span>Progress</span>
+                        <span>0%</span>
+                    </div>
+                    <div class="progress progress-sm">
+                        <div class="progress-bar bg-warning" style="width: 0%"></div>
+                    </div>
+                </div>
+                <ul class="module-list">
+                    <li class="mb-1"><i class="bi bi-circle text-muted me-2"></i>Storm structure</li>
+                    <li class="mb-1"><i class="bi bi-circle text-muted me-2"></i>Wall clouds & funnels</li>
+                    <li><i class="bi bi-circle text-muted me-2"></i>Reporting protocols</li>
+                </ul>
+                <a href="tornado/course-tornado.html#section3" class="btn btn-outline-warning w-100 btn-module">
+                    <i class="bi bi-cloud-sun me-2"></i>Advanced Training
+                </a>
+            </div>
+        </div>
+
+        <!-- Tornado Emergency Kit -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card p-4 module-card tornado h-100">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <div class="module-icon bg-danger-soft text-danger">
+                        <i class="bi bi-shield-check"></i>
+                    </div>
+                    <span class="badge bg-danger module-badge">Emergency</span>
+                </div>
+                <h5 class="fw-bold">Tornado Emergency Response</h5>
+                <p class="small text-muted mb-3">Immediate actions during and after a tornado strike.</p>
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between small text-muted mb-1">
+                        <span>Progress</span>
+                        <span id="tornado3Progress">0%</span>
+                    </div>
+                    <div class="progress progress-sm">
+                        <div class="progress-bar bg-danger" id="tornado3ProgressBar" style="width: 0%"></div>
+                    </div>
+                </div>
+                <ul class="module-list">
+                    <li class="mb-1"><i class="bi bi-circle text-muted me-2"></i>During tornado actions</li>
+                    <li class="mb-1"><i class="bi bi-circle text-muted me-2"></i>After tornado safety</li>
+                    <li><i class="bi bi-circle text-muted me-2"></i>Injury response</li>
+                </ul>
+                <a href="tornado/course-tornado.html#section5" class="btn btn-outline-info w-100 btn-module">
+                    <i class="bi bi-activity me-2"></i>Emergency Response
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== WILDFIRE MODULES ==================== -->
+<section class="container my-5 module-category" id="wildfireModules" data-category="wildfire" style="display: none;">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold mb-0">🔥 Wildfire Safety Course</h2>
+        <span class="badge bg-danger px-3 py-2">Critical</span>
+    </div>
+    
+    <div class="row g-4">
+        <!-- Wildfire Module -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card p-4 module-card wildfire h-100">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <div class="module-icon bg-danger-soft text-danger">
+                        <i class="bi bi-fire"></i>
+                    </div>
+                    <span class="badge bg-danger module-badge">Complete Course</span>
+                </div>
+                <h5 class="fw-bold">Wildfire Safety & Survival</h5>
+                <p class="small text-muted mb-3">Comprehensive training on wildfire prevention, evacuation, and survival.</p>
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between small text-muted mb-1">
+                        <span>Progress</span>
+                        <span id="wildfireProgress">0%</span>
+                    </div>
+                    <div class="progress progress-sm">
+                        <div class="progress-bar bg-danger" id="wildfireProgressBar" style="width: 0%"></div>
+                    </div>
+                </div>
+                <ul class="module-list">
+                    <li class="mb-1"><i class="bi bi-check-circle text-success me-2"></i>Fire behavior</li>
+                    <li class="mb-1"><i class="bi bi-circle text-muted me-2"></i>Defensible space</li>
+                    <li><i class="bi bi-circle text-muted me-2"></i>Evacuation planning</li>
+                </ul>
+                <a href="wildfire/course-wildfire.html" class="btn btn-orange w-100 btn-module">
+                    <i class="bi bi-play-circle me-2"></i>Start Course
+                </a>
+            </div>
+        </div>
+
+        <!-- Wildfire Home Protection -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card p-4 module-card wildfire h-100">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <div class="module-icon bg-warning-soft text-warning">
+                        <i class="bi bi-house-heart"></i>
+                    </div>
+                    <span class="badge bg-warning module-badge">Home Safety</span>
+                </div>
+                <h5 class="fw-bold">Home Wildfire Protection</h5>
+                <p class="small text-muted mb-3">Protect your property with defensible space and home hardening.</p>
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between small text-muted mb-1">
+                        <span>Progress</span>
+                        <span>0%</span>
+                    </div>
+                    <div class="progress progress-sm">
+                        <div class="progress-bar bg-warning" style="width: 0%"></div>
+                    </div>
+                </div>
+                <ul class="module-list">
+                    <li class="mb-1"><i class="bi bi-circle text-muted me-2"></i>Zone 0-2 defensible space</li>
+                    <li class="mb-1"><i class="bi bi-circle text-muted me-2"></i>Home hardening techniques</li>
+                    <li><i class="bi bi-circle text-muted me-2"></i>Ember resistance</li>
+                </ul>
+                <a href="wildfire/course-wildfire.html#section3" class="btn btn-outline-orange w-100 btn-module">
+                    <i class="bi bi-shield me-2"></i>Protect Your Home
+                </a>
+            </div>
+        </div>
+
+        <!-- Wildfire Evacuation -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card p-4 module-card wildfire h-100">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <div class="module-icon bg-success-soft text-success">
+                        <i class="bi bi-backpack4"></i>
+                    </div>
+                    <span class="badge bg-success module-badge">Evacuation</span>
+                </div>
+                <h5 class="fw-bold">Wildfire Go-Bag & Evacuation</h5>
+                <p class="small text-muted mb-3">Prepare your emergency kit and evacuation plan.</p>
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between small text-muted mb-1">
+                        <span>Progress</span>
+                        <span>0%</span>
+                    </div>
+                    <div class="progress progress-sm">
+                        <div class="progress-bar bg-success" style="width: 0%"></div>
+                    </div>
+                </div>
+                <ul class="module-list">
+                    <li class="mb-1"><i class="bi bi-circle text-muted me-2"></i>Go-Bag essentials</li>
+                    <li class="mb-1"><i class="bi bi-circle text-muted me-2"></i>Evacuation routes</li>
+                    <li><i class="bi bi-circle text-muted me-2"></i>Family communication plan</li>
+                </ul>
+                <a href="wildfire/course-wildfire.html#section6" class="btn btn-outline-success w-100 btn-module">
+                    <i class="bi bi-suitcase me-2"></i>Prepare Go-Bag
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== OTHER DISASTERS ==================== -->
+<section class="container my-5 module-category" id="otherModules" data-category="other" style="display: none;">
+    <h2 class="fw-bold mb-4">🌍 More Disaster Preparedness</h2>
+    <div class="row g-4">
+        
+        <!-- Cyclone Module -->
+        <div class="col-md-3">
+            <div class="card p-4 text-center module-card cyclone h-100">
+                <div class="module-icon bg-primary-soft text-primary mx-auto">
+                    <i class="bi bi-hurricane"></i>
+                </div>
+                <h5 class="fw-bold mt-2">Cyclone</h5>
+                <p class="small text-muted">Storm surge and high wind safety.</p>
+                <span class="badge bg-secondary mb-2">Coming Soon</span>
+                <button class="btn btn-outline-primary btn-sm w-100" disabled>
+                    <i class="bi bi-clock me-1"></i>In Development
+                </button>
+            </div>
+        </div>
+
+        <!-- Tsunami Module -->
+        <div class="col-md-3">
+            <div class="card p-4 text-center module-card tsunami h-100">
+                <div class="module-icon bg-danger-soft text-danger mx-auto">
+                    <i class="bi bi-tsunami"></i>
+                </div>
+                <h5 class="fw-bold mt-2">Tsunami</h5>
+                <p class="small text-muted">Coastal evacuation and early warning.</p>
+                <span class="badge bg-secondary mb-2">Coming Soon</span>
+                <button class="btn btn-outline-danger btn-sm w-100" disabled>
+                    <i class="bi bi-clock me-1"></i>In Development
+                </button>
+            </div>
+        </div>
+
+        <!-- Landslide Module -->
+        <div class="col-md-3">
+            <div class="card p-4 text-center module-card landslide h-100">
+                <div class="module-icon bg-warning-soft text-warning mx-auto">
+                    <i class="bi bi-mountain"></i>
+                </div>
+                <h5 class="fw-bold mt-2">Landslide</h5>
+                <p class="small text-muted">Slope stability and warning signs.</p>
+                <span class="badge bg-secondary mb-2">Coming Soon</span>
+                <button class="btn btn-outline-warning btn-sm w-100" disabled>
+                    <i class="bi bi-clock me-1"></i>In Development
+                </button>
+            </div>
+        </div>
+
+        <!-- Heatwave Module -->
+        <div class="col-md-3">
+            <div class="card p-4 text-center module-card heatwave h-100">
+                <div class="module-icon bg-danger-soft text-danger mx-auto">
+                    <i class="bi bi-thermometer-sun"></i>
+                </div>
+                <h5 class="fw-bold mt-2">Heatwave</h5>
+                <p class="small text-muted">Heat illness prevention and hydration.</p>
+                <span class="badge bg-secondary mb-2">Coming Soon</span>
+                <button class="btn btn-outline-danger btn-sm w-100" disabled>
+                    <i class="bi bi-clock me-1"></i>In Development
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== UPCOMING MODULES ==================== -->
+<section class="container my-5 module-category" id="upcomingModules" data-category="upcoming" style="display: none;">
+    <h2 class="fw-bold mb-4">🚀 Upcoming Modules</h2>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card p-4 text-center module-card upcoming">
+                <div class="module-icon bg-secondary-soft text-secondary mx-auto">
+                    <i class="bi bi-robot"></i>
+                </div>
+                <h5 class="fw-bold mt-2">AI Disaster Response</h5>
+                <p class="small text-muted">Using technology in emergency management</p>
+                <span class="badge bg-secondary">Q2 2026</span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card p-4 text-center module-card upcoming">
+                <div class="module-icon bg-secondary-soft text-secondary mx-auto">
+                    <i class="bi bi-heart-pulse"></i>
+                </div>
+                <h5 class="fw-bold mt-2">Mass Casualty Response</h5>
+                <p class="small text-muted">Triage and emergency medical response</p>
+                <span class="badge bg-secondary">Q3 2026</span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card p-4 text-center module-card upcoming">
+                <div class="module-icon bg-secondary-soft text-secondary mx-auto">
+                    <i class="bi bi-building"></i>
+                </div>
+                <h5 class="fw-bold mt-2">School Safety Drills</h5>
+                <p class="small text-muted">Institutional emergency preparedness</p>
+                <span class="badge bg-secondary">Q3 2026</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer bg-dark mt-5 py-4">
+    <div class="container text-center">
+        <div class="text-center small text-muted">
+            © 2026 DMTS Platform | Academic Minor Project
+        </div>
+    </div>
+</footer>
+
+
+<!-- Predictor Modal -->
+<div class="modal fade" id="predictorModal" tabindex="-1" aria-labelledby="predictorModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content border-0 shadow-lg predictor-modal-content" style="border-radius: 20px; overflow: hidden;">
+            <div class="modal-header bg-dark text-white border-0 py-4">
+                <h5 class="modal-title fw-bold" id="predictorModalLabel">🌍 AI Disaster Predictor</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-5">
+                <h2 class="fw-bold mb-3 text-center">🌍 AI Disaster Predictor</h2>
+
+                <div class="row justify-content-center">
+                    <div class="col-md-3">
+                        <input type="number" id="rainfall" class="form-control mb-3" placeholder="Rainfall (mm)">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="number" id="temperature" class="form-control mb-3" placeholder="Temperature (°C)">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="number" id="humidity" class="form-control mb-3" placeholder="Humidity (%)">
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center gap-3 mt-4">
+                    <button class="btn btn-primary px-4 py-2" onclick="predictDisaster()">
+                        🔍 Predict Disaster
+                    </button>
+                    <button class="btn btn-success" onclick="getWeather()">
+                        🌍 Auto Detect Weather
+                    </button>
+                </div>
+
+                <!-- RESULT -->
+                <div class="mt-4 text-center">
+                    <h4 id="result"></h4>
+                    <p id="probability" class="fw-bold"></p>
+                </div>
+
+                <!-- 🔥 Risk Meter -->
+                <div class="progress mt-3" style="height: 25px;">
+                    <div id="riskBar" class="progress-bar" style="width:0%">0%</div>
+                </div>
+
+                <!-- 📊 Graph -->
+                <canvas id="predictionChart" height="100" class="mt-4"></canvas>
+
+                <!-- 🌍 Map Indicator -->
+                <div class="mt-3 text-center">
+                    <h5>🌍 Risk Zone</h5>
+                    <p id="mapStatus"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/modules.js"></script>
+<script src="js/predictor.js"></script>
+
+</body>
+</html>
