@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: dtms-platform
+    runtime: python
+    buildCommand: pip install -r Backend/requirements.txt
+    startCommand: cd Backend && uvicorn main:app --host 0.0.0.0 --port $PORT
